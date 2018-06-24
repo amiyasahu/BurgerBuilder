@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {Aux} from '../../hoc';
+import React, { Component } from 'react';
+import { Aux } from '../../hoc';
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 class BurgerBuilder extends Component {
 
@@ -7,6 +8,8 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <div>Awesome.. You can build a burger here</div>
+                <BurgerIngredient type="bread-top" />
+                <BurgerIngredient type="bread-bottom" />
             </Aux>
         );
     }
