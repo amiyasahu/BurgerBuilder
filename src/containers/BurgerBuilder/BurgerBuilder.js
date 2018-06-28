@@ -59,16 +59,21 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <div className="TotalPrice">
-                    <div className="Price">
-                        Total price : {this.state.totalPrice.toFixed(2)}$
-                    </div>
-                </div>
+                {this.renderTotalPrice()}
                 <BuildControls onAdd={this.addIngredientHandler} onRemove={this.removeIngredientHandler}/>
             </Aux>
         );
     }
 
+    renderTotalPrice() {
+        return (
+            <div className="TotalPrice">
+                <div className="Price">
+                    Total price : {this.state.totalPrice.toFixed(2)}$
+                </div>
+            </div>
+        );
+    }
 }
 
 export default BurgerBuilder;
