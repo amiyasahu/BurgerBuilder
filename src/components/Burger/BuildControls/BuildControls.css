@@ -1,4 +1,4 @@
-.BuildControls {
+.BuildControls, .TotalPrice {
     width: 100%;
     background-color: #CF8F2E;
     display: flex;
@@ -6,4 +6,14 @@
     align-items: center;
     box-shadow: 0 2px 1px #cccccc;
     padding: 10px 0;
+}
+
+.TotalPrice {
+    background-color: #cf8b15;
+    border-bottom: 1px solid #ccbf73;
+}
+
+.Price {
+    text-align: center;
+    font-weight: bold;
 }

@@ -19,13 +19,27 @@ const BuildControls = (props) => {
                 type={control.type}
                 onAdd={props.onAdd}
                 onRemove={props.onRemove}
+                disabledInfo={props.disabledInfo[ control.type ]}
             />
         )
     );
 
     return (
-        <div className="BuildControls">
-            {controlElements}
+        <div>
+            {totalPrice(props.totalPrice)}
+            <div className="BuildControls">
+                {controlElements}
+            </div>
+        </div>
+    );
+};
+
+const totalPrice = (price) => {
+    return (
+        <div className="TotalPrice">
+            <div className="Price">
+                Total price : {price.toFixed(2)}$
+            </div>
         </div>
     );
 };
