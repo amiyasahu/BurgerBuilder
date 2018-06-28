@@ -2,7 +2,7 @@ import React from 'react';
 import BuildControl from './BuildControl/BuildControl';
 import './BuildControls.css';
 
-const BuildControls = () => {
+const BuildControls = (props) => {
 
     const controls = [
         { label: 'Salad', type: 'salad' },
@@ -13,7 +13,13 @@ const BuildControls = () => {
 
     let controlElements = controls.map(
         control => (
-            <BuildControl key={control.label} label={control.label}/>
+            <BuildControl
+                key={control.label}
+                label={control.label}
+                type={control.type}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+            />
         )
     );
 
