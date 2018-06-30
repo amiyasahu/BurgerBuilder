@@ -5,9 +5,10 @@ import { Backdrop } from "../../index";
 import './Modal.css';
 
 const modal = (props) => {
+    const attachedClassNames = [ "Modal", ( props.show ? "Show" : "" ) ];
     return (
         <Aux>
-            <div className={[ "Modal", ( props.show ? "Show" : "" ) ].join(" ")}>
+            <div className={attachedClassNames.join(" ")}>
                 {props.children}
             </div>
 
