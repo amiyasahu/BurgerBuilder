@@ -28,3 +28,9 @@
         display: none;
     }
 }
+
+@media (min-width: 500px) {
+    .MobileOnly {
+        display: none;
+    }
+}
