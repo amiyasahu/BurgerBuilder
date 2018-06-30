@@ -7,8 +7,7 @@ import './Modal.css';
 const modal = (props) => {
     return (
         <Aux>
-
-            <div className={"Modal" + ( props.show ? " Show" : "" )}>
+            <div className={[ "Modal", ( props.show ? "Show" : "" ) ].join(" ")}>
                 {props.children}
             </div>
 
