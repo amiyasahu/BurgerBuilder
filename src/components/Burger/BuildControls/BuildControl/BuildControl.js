@@ -5,8 +5,8 @@ const buildControl = (props) => {
     return (
         <div className="BuildControl">
             <div className="Label">{props.label}</div>
-            <button className="Less" onClick={() => props.onRemove(props.type)}>Less</button>
-            <button className="More" onClick={() => props.onAdd(props.type)}>More</button>
+            <button className="Less" onClick={() => props.onRemove(props.type)} disabled={props.lessShouldBeDisabled} >Less</button>
+            <button className="More" onClick={() => props.onAdd(props.type)} disabled={props.moreShouldBeDisabled}>More</button>
         </div>
     );
 };

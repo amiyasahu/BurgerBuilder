@@ -20,7 +20,19 @@ class BurgerBuilder extends Component {
             cheese: 2,
             meat: 1,
         },
-        totalPrice: 2.99
+        totalPrice: 2.99,
+        purchasable: true
+    };
+
+    isPurchasable = (updatedIngredients) => {
+        const sum = Object.keys(updatedIngredients).map(igKey => {
+            return updatedIngredients[ igKey ]
+        }).reduce(
+            (val, currVal) => {
+                return val + currVal
+            }, 0);
+
+        return sum > 0;
     };
 
     addIngredientHandler = (type) => {
@@ -32,10 +44,13 @@ class BurgerBuilder extends Component {
         const updatedIngredients = {
             ...this.state.ingredients
         };
+
         updatedIngredients[ type ] = this.state.ingredients[ type ] + 1;
+
         this.setState({
             ingredients: updatedIngredients,
-            totalPrice: this.state.totalPrice + INGREDIENT_PRICES[ type ]
+            totalPrice: this.state.totalPrice + INGREDIENT_PRICES[ type ],
+            purchasable : this.isPurchasable(updatedIngredients)
         });
     };
 
@@ -49,17 +64,24 @@ class BurgerBuilder extends Component {
             ...this.state.ingredients
         };
         updatedIngredients[ type ] = this.state.ingredients[ type ] - 1;
+
         this.setState({
             ingredients: updatedIngredients,
-            totalPrice: this.state.totalPrice - INGREDIENT_PRICES[ type ]
+            totalPrice: this.state.totalPrice - INGREDIENT_PRICES[ type ],
+            purchasable : this.isPurchasable(updatedIngredients)
         });
     };
 
     render() {
-        const disabledInfo = { ...this.state.ingredients };
+        const lessShouldBeDisabled = { ...this.state.ingredients };
+        const moreShouldBeDisabled = { ...this.state.ingredients };
 
-        for ( let key in disabledInfo ) {
-            disabledInfo[ key ] = disabledInfo[ key ] === 0;
+        for ( let key in lessShouldBeDisabled ) {
+            lessShouldBeDisabled[ key ] = lessShouldBeDisabled[ key ] === 0;
+        }
+
+        for ( let key in moreShouldBeDisabled ) {
+            moreShouldBeDisabled[ key ] = moreShouldBeDisabled[ key ] >= 3;
         }
 
         return (
@@ -68,8 +90,10 @@ class BurgerBuilder extends Component {
                 <BuildControls
                     onAdd={this.addIngredientHandler}
                     onRemove={this.removeIngredientHandler}
-                    disabledInfo={disabledInfo}
-                    totalPrice={this.state.totalPrice}/>
+                    lessShouldBeDisabled={lessShouldBeDisabled}
+                    moreShouldBeDisabled={moreShouldBeDisabled}
+                    totalPrice={this.state.totalPrice}
+                    purchasable={this.state.purchasable}/>
             </Aux>
         );
     }
