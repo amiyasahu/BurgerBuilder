@@ -12,7 +12,7 @@ const modal = (props) => {
                 {props.children}
             </div>
 
-            <Backdrop clicked={props.modalClosed} show={props.show} />
+            <Backdrop clicked={props.modalClosed} show={props.show}/>
         </Aux>
     );
 };
