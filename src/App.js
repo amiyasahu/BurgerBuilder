@@ -3,6 +3,8 @@ import { Layout } from './components';
 import { BurgerBuilder } from './containers';
 import './App.css';
 
+import {axios} from './axios';
+
 class App extends Component {
     render() {
         return (
