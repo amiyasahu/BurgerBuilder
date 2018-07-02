@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Aux } from '../../hoc/index';
 import Burger from '../../components/Burger/Burger';
 import { BuildControls, Modal, OrderSummary } from '../../components';
+import { defaultAxios } from '../../axios';
 import './BurgerBuilder.css';
 
 const INGREDIENT_PRICES = {
@@ -22,22 +23,37 @@ class BurgerBuilder extends Component {
         },
         totalPrice: 2.99,
         purchasable: true,
-        purchasing: false
+        purchasing: false,
+        orderIsInProgress: false,
+        orderComplete: false
     };
 
     purchaseHandler = () => {
         this.setState({ purchasing: true });
+    };
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false });
-    }
+    };
 
-    purchaseContinueHandler = () => {
-        alert("Continue");
-        this.setState({ purchasing: false });
-    }
+    purchaseContinueHandler = async () => {
 
+        this.setState({ orderIsInProgress: true, purchasing: true });
+
+        const response = await defaultAxios.post('/orders', {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice
+        });
+
+        // just an dummy wait to see the spinner for a second
+        await this.sleep(1000);
+
+        this.setState({ orderIsInProgress: false, orderComplete : true });
+    };
 
     isPurchasable = (updatedIngredients) => {
         const sum = Object.keys(updatedIngredients).map(igKey => {
@@ -78,6 +94,7 @@ class BurgerBuilder extends Component {
         const updatedIngredients = {
             ...this.state.ingredients
         };
+
         updatedIngredients[ type ] = this.state.ingredients[ type ] - 1;
 
         this.setState({
@@ -110,9 +127,14 @@ class BurgerBuilder extends Component {
                     totalPrice={this.state.totalPrice}
                     purchasable={this.state.purchasable}
                     onPurchase={this.purchaseHandler}/>
-                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+                <Modal show={this.state.purchasing}
+                       update={this.state.orderComplete || this.state.orderIsInProgress}
+                       modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary ingredients={this.state.ingredients}
                                   totalPrice={this.state.totalPrice}
+                                  purchasing={this.state.purchasing}
+                                  orderIsInProgress={this.state.orderIsInProgress}
+                                  orderComplete={this.state.orderComplete}
                                   purchaseCancelled={this.purchaseCancelHandler}
                                   purchaseContinued={this.purchaseContinueHandler}/>
                 </Modal>
