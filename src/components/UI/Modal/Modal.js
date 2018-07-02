@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Aux } from '../../../hoc';
 import { Backdrop } from "../../index";
 
 import './Modal.css';
 
-const modal = (props) => {
-    const attachedClassNames = [ "Modal", ( props.show ? "Show" : "" ) ];
-    return (
-        <Aux>
-            <div className={attachedClassNames.join(" ")}>
-                {props.children}
-            </div>
+class Modal extends Component {
 
-            <Backdrop clicked={props.modalClosed} show={props.show}/>
-        </Aux>
-    );
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.show !== this.props.show;
+    }
+
+    componentWillUpdate() {
+        console.log("[Modal] : Will update now");
+    }
+
+    render() {
+        const attachedClassNames = [ "Modal", ( this.props.show ? "Show" : "" ) ];
+        return (
+            <Aux>
+                <div className={attachedClassNames.join(" ")}>
+                    {this.props.children}
+                </div>
+                <Backdrop clicked={this.props.modalClosed} show={this.props.show}/>
+            </Aux>
+        );
+    }
 };
 
-export default modal;
+export default Modal;
