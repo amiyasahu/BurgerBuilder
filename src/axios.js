@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const defaultAxios = axios.create({
-    baseURL: 'http://localhost:3005',
+    baseURL: 'http://localhost:3004',
 });
 
 // Add a request interceptor
