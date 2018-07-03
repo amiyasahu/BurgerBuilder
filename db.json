@@ -1,3 +1,351 @@
 {
-
+  "ingredients": {
+    "salad": 1,
+    "bacon": 1,
+    "cheese": 1,
+    "meat": 1
+  },
+  "users": [
+    {
+      "name": "Amiya",
+      "id": 1
+    },
+    {
+      "name": "Amiya",
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "name": "Amiya",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "orders": [
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 1
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 2
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 3
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 4
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 5
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 6
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 7
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 8
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 9
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 10
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 11
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 12
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 13
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 14
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 15
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 16
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 17
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 18
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 19
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 20
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 21
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 22
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 23
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 24
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 1,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 3.49,
+      "id": 25
+    },
+    {
+      "ingredients": {
+        "salad": 2,
+        "bacon": 1,
+        "cheese": 1,
+        "meat": 1
+      },
+      "price": 3.6900000000000004,
+      "id": 26
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 1,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 3.49,
+      "id": 27
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 2.99,
+      "id": 28
+    },
+    {
+      "ingredients": {
+        "salad": 2,
+        "bacon": 0,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 3.29,
+      "id": 29
+    },
+    {
+      "ingredients": {
+        "salad": 2,
+        "bacon": 1,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 3.79,
+      "id": 30
+    },
+    {
+      "ingredients": {
+        "salad": 2,
+        "bacon": 1,
+        "cheese": 2,
+        "meat": 1
+      },
+      "price": 3.79,
+      "id": 31
+    }
+  ]
 }
