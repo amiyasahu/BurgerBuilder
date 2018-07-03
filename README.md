@@ -1,3 +1,6 @@
+# My Burger Builder (A simple app using react)
+![Burger Builder App](https://user-images.githubusercontent.com/2969035/42195445-df7cea78-7e46-11e8-89a3-39de6e88ff5a.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
