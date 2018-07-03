@@ -3,6 +3,7 @@ import { Aux } from '../../hoc/index';
 import Burger from '../../components/Burger/Burger';
 import { BuildControls, Modal, OrderSummary } from '../../components';
 import { defaultAxios } from '../../axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import './BurgerBuilder.css';
 
 const INGREDIENT_PRICES = {
@@ -25,7 +26,19 @@ class BurgerBuilder extends Component {
         purchasable: true,
         purchasing: false,
         orderIsInProgress: false,
-        orderComplete: false
+        orderComplete: false,
+        loading: true
+    };
+
+    async componentDidMount() {
+        await this.loadIngredients();
+    }
+
+    loadIngredients = async () => {
+        await this.sleep(1000); // dummy to see the spinner
+        const response = await defaultAxios.get('/ingredients');
+        this.setState({ ingredients: response.data, loading: false });
+        return response;
     };
 
     purchaseHandler = () => {
@@ -52,7 +65,7 @@ class BurgerBuilder extends Component {
         // just an dummy wait to see the spinner for a second
         await this.sleep(1000);
 
-        this.setState({ orderIsInProgress: false, orderComplete : true });
+        this.setState({ orderIsInProgress: false, orderComplete: true });
     };
 
     isPurchasable = (updatedIngredients) => {
@@ -116,17 +129,27 @@ class BurgerBuilder extends Component {
             moreShouldBeDisabled[ key ] = moreShouldBeDisabled[ key ] >= 3;
         }
 
+        let burger = <Spinner/>;
+
+        if ( !this.state.loading ) {
+            burger = (
+                <Aux>
+                    <Burger ingredients={this.state.ingredients}/>
+                    <BuildControls
+                        onAdd={this.addIngredientHandler}
+                        onRemove={this.removeIngredientHandler}
+                        lessShouldBeDisabled={lessShouldBeDisabled}
+                        moreShouldBeDisabled={moreShouldBeDisabled}
+                        totalPrice={this.state.totalPrice}
+                        purchasable={this.state.purchasable}
+                        onPurchase={this.purchaseHandler}/>
+                </Aux>
+            );
+        }
+
         return (
             <Aux>
-                <Burger ingredients={this.state.ingredients}/>
-                <BuildControls
-                    onAdd={this.addIngredientHandler}
-                    onRemove={this.removeIngredientHandler}
-                    lessShouldBeDisabled={lessShouldBeDisabled}
-                    moreShouldBeDisabled={moreShouldBeDisabled}
-                    totalPrice={this.state.totalPrice}
-                    purchasable={this.state.purchasable}
-                    onPurchase={this.purchaseHandler}/>
+                {burger}
                 <Modal show={this.state.purchasing}
                        update={this.state.orderComplete || this.state.orderIsInProgress}
                        modalClosed={this.purchaseCancelHandler}>
