@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Layout } from './components';
-import { BurgerBuilder } from './containers';
+import { BurgerBuilder, Checkout } from './containers';
+import { axios } from './axios';
 import './App.css';
-
-import {axios} from './axios';
 
 class App extends Component {
     render() {
@@ -11,6 +10,7 @@ class App extends Component {
             <div className="App">
                 <Layout>
                     <BurgerBuilder/>
+                    <Checkout/>
                 </Layout>
             </div>
         );
