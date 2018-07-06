@@ -41,7 +41,7 @@ class ContactData extends Component {
             deliveryMethod: 'fastest'
         };
 
-        const response = await defaultAxios.post('/orders', order);
+        await defaultAxios.post('/orders', order);
 
         // just an dummy wait to see the spinner for a second
         await this.sleep(1000);
@@ -89,6 +89,7 @@ class ContactData extends Component {
         }
 
         let response = null;
+
         if ( this.state.orderComplete ) {
             response = this.renderOrderFinished();
         } else if ( this.state.loading ) {
