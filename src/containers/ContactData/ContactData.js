@@ -38,7 +38,8 @@ class ContactData extends Component {
                     postalCode: '19713'
                 }
             },
-            deliveryMethod: 'fastest'
+            deliveryMethod: 'fastest',
+            when: new Date()
         };
 
         await defaultAxios.post('/orders', order);
@@ -75,8 +76,8 @@ class ContactData extends Component {
         return (
             <div>
                 <h2>Thank you for your order</h2>
-                <p>See you soon again.</p>
-                <p>Click <Link to="/">here</Link> to go back</p>
+                <p><Link to="/orders" className="button">View your orders</Link></p>
+                <p><Link to="/" className="button">Go back</Link></p>
             </div>
         );
     };

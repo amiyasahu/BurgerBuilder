@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from './components';
-import { BurgerBuilder, Checkout } from './containers';
+import { BurgerBuilder, Checkout, Orders } from './containers';
 import './App.css';
+import './CustomScroll.css';
 
 const routes = (
     <Switch>
         <Route path="/checkout" component={Checkout}/>
+        <Route path="/orders" component={Orders}/>
         <Route path="/" exact component={BurgerBuilder}/>
     </Switch>
 );

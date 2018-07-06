@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Aux } from '../../hoc/index';
+import { Aux, withErrorHandler } from '../../hoc/index';
 import Burger from '../../components/Burger/Burger';
 import { BuildControls, Modal, OrderSummary } from '../../components';
 import { defaultAxios } from '../../axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-
 import './BurgerBuilder.css';
 
 const INGREDIENT_PRICES = {
@@ -27,8 +25,6 @@ class BurgerBuilder extends Component {
         totalPrice: 2.99,
         purchasable: true,
         purchasing: false,
-        orderIsInProgress: false,
-        orderComplete: false,
         loading: true
     };
 
@@ -75,8 +71,6 @@ class BurgerBuilder extends Component {
             search: queryString
         });
 
-        // this.setState({ orderIsInProgress: true, purchasing: true });
-        //
         // const response = await defaultAxios.post('/orders', {
         //     ingredients: this.state.ingredients,
         //     price: this.state.totalPrice
@@ -84,8 +78,6 @@ class BurgerBuilder extends Component {
         //
         // // just an dummy wait to see the spinner for a second
         // await this.sleep(1000);
-        //
-        // this.setState({ orderIsInProgress: false, orderComplete: true });
     };
 
     isPurchasable = (updatedIngredients) => {
@@ -174,13 +166,10 @@ class BurgerBuilder extends Component {
             <Aux>
                 {burger}
                 <Modal show={this.state.purchasing}
-                       update={this.state.orderComplete || this.state.orderIsInProgress}
                        modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary ingredients={this.state.ingredients}
                                   totalPrice={this.state.totalPrice}
                                   purchasing={this.state.purchasing}
-                                  orderIsInProgress={this.state.orderIsInProgress}
-                                  orderComplete={this.state.orderComplete}
                                   purchaseCancelled={this.purchaseCancelHandler}
                                   purchaseContinued={this.purchaseContinueHandler}/>
                 </Modal>

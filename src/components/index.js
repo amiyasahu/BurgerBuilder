@@ -11,3 +11,4 @@ export { default as Modal } from './UI/Modal/Modal';
 export { default as Backdrop } from './UI/Backdrop/Backdrop';
 export { default as Spinner } from './UI/Spinner/Spinner';
 export { default as ToggleButton } from './UI/ToggleButton/ToggleButton';
+export { default as Order } from './Order/Order';

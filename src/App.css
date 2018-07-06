@@ -11,3 +11,7 @@
 .Button:first-of-type {
     margin-left: 0;
 }
+
+.text-right{
+    text-align: right;
+}

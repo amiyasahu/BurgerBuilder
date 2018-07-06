@@ -1,0 +1,6 @@
+.OrderSummary, .OrderSummary ul, .OrderSummary li, .OrderSummary p {
+    margin-bottom: 0.5rem;
+}
+.OrderSummary .Button {
+    padding: 0 15px;
+}

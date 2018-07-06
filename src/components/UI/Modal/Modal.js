@@ -10,10 +10,6 @@ class Modal extends Component {
         return nextProps.show !== this.props.show || nextProps.update === true;
     }
 
-    componentWillUpdate() {
-        console.log("[Modal] : Will update now");
-    }
-
     render() {
         const attachedClassNames = [ "Modal", ( this.props.show ? "Show" : "" ) ];
         return (

@@ -13,8 +13,8 @@ const navigation = () => {
 const NavigationItems = () => {
     return (
         <ul className="NavigationItems">
-            <NavigationItem link="/" name="Make your burger"/>
-            <NavigationItem link="/checkout" name="Checkout"/>
+            <NavigationItem link="/" exact name="Make your burger"/>
+            <NavigationItem link="/orders" name="My Orders"/>
             <NavigationItem link="#" name="Logout"/>
         </ul>
     );
@@ -23,7 +23,7 @@ const NavigationItems = () => {
 const NavigationItem = (props) => {
     return (
         <li className="NavigationItem">
-            <NavLink to={props.link} exact>
+            <NavLink to={props.link} exact={props.exact}>
                 {props.name}
             </NavLink>
         </li>

@@ -1,0 +1,41 @@
+.Order {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .125);
+    box-shadow: 0 2px 3px #ccc;
+    box-sizing: border-box;
+    margin: 20px auto;
+    border-radius: 3px;
+}
+
+.OrderHeader {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 3px 3px 0 0;
+}
+
+.OrderDetail {
+    padding: 10px;
+}
+
+.OrderFooter {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0, 0, 0, .03);
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
+
+.CustomerName {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.CustomerEmail {
+    font-style: italic;
+}
+
+.OrderTotal {
+    font-weight: bold;
+}
+
