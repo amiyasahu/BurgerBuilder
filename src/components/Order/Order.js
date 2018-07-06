@@ -7,11 +7,9 @@ const Order = (props) => {
     const ingredientSummary = Object.keys(order.ingredients)
         .map(igKey => {
             return (
-                <li key={igKey}>
+                <span key={igKey} className="Ingredient">
                     <span style={{ textTransform: 'capitalize' }}>
-                    {igKey}
-                    </span> : {order.ingredients[ igKey ]}
-                </li>
+                    {igKey} </span> ({order.ingredients[ igKey ]}) </span>
             )
         });
 
@@ -32,10 +30,10 @@ const Order = (props) => {
                 <div className="u-cf"/>
             </div>
             <div className="OrderDetail">
-                Here are the ingredients included in this order
-                <ul>
+                Ingredients included in this order with a delicious burger
+                <div className="Ingredients">
                     {ingredientSummary}
-                </ul>
+                </div>
             </div>
             <div className="OrderFooter">
                 <div className="DeliveryAddress u-pull-left">
@@ -49,7 +47,6 @@ const Order = (props) => {
         </div>
     );
 };
-
 
 
 /**
