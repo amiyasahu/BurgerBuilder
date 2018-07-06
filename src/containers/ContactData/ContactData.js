@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import './ContactData.css';
 
 class ContactData extends Component {
@@ -12,6 +12,10 @@ class ContactData extends Component {
             postalCode: ''
         }
     };
+
+    componentDidMount() {
+        ReactDOM.findDOMNode(this).scrollIntoView();
+    }
 
     render() {
         return (
