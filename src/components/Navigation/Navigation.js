@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 const navigation = () => {
@@ -12,8 +13,8 @@ const navigation = () => {
 const NavigationItems = () => {
     return (
         <ul className="NavigationItems">
-            <NavigationItem link="#" name="Make your burger" active/>
-            <NavigationItem link="#" name="Checkout"/>
+            <NavigationItem link="/" name="Make your burger"/>
+            <NavigationItem link="/checkout" name="Checkout"/>
             <NavigationItem link="#" name="Logout"/>
         </ul>
     );
@@ -22,8 +23,9 @@ const NavigationItems = () => {
 const NavigationItem = (props) => {
     return (
         <li className="NavigationItem">
-            <a href={props.link}
-               className={[ props.active ? "active" : "" ].join(" ")}>{props.name}</a>
+            <NavLink to={props.link} exact>
+                {props.name}
+            </NavLink>
         </li>
     );
 };

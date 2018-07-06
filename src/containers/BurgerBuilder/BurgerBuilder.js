@@ -37,7 +37,7 @@ class BurgerBuilder extends Component {
     }
 
     loadIngredients = async () => {
-        await this.sleep(1000); // dummy to see the spinner
+        await this.sleep(250); // dummy to see the spinner
         const response = await defaultAxios.get('/ingredients');
         this.setState({ ingredients: response.data, loading: false });
         return response;
@@ -56,18 +56,33 @@ class BurgerBuilder extends Component {
     };
 
     purchaseContinueHandler = async () => {
+        const queryParams = [];
 
-        this.setState({ orderIsInProgress: true, purchasing: true });
+        for ( let ingredient in this.state.ingredients ) {
+            queryParams.push(
+                encodeURIComponent(ingredient)
+                + "="
+                + encodeURIComponent(this.state.ingredients[ ingredient ])
+            );
+        }
 
-        const response = await defaultAxios.post('/orders', {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice
+        const queryString = queryParams.join("&");
+        this.props.history.push({
+            pathname: "/checkout",
+            search: queryString
         });
 
-        // just an dummy wait to see the spinner for a second
-        await this.sleep(1000);
-
-        this.setState({ orderIsInProgress: false, orderComplete: true });
+        // this.setState({ orderIsInProgress: true, purchasing: true });
+        //
+        // const response = await defaultAxios.post('/orders', {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice
+        // });
+        //
+        // // just an dummy wait to see the spinner for a second
+        // await this.sleep(1000);
+        //
+        // this.setState({ orderIsInProgress: false, orderComplete: true });
     };
 
     isPurchasable = (updatedIngredients) => {
@@ -136,7 +151,10 @@ class BurgerBuilder extends Component {
         if ( !this.state.loading ) {
             burger = (
                 <Aux>
-                    <Burger ingredients={this.state.ingredients}/>
+                    <Burger
+                        ingredients={this.state.ingredients}
+                        suggest="Start adding ingredients to your burger!!"/>
+
                     <BuildControls
                         onAdd={this.addIngredientHandler}
                         onRemove={this.removeIngredientHandler}

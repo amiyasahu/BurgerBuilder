@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../../UI/Spinner/Spinner';
+import { Spinner } from '../../index';
 import { Aux } from '../../../hoc';
 
 const orderSummary = (props) => {
@@ -23,7 +23,7 @@ const orderSummary = (props) => {
                 {ingredientSummary}
             </ul>
             {
-                props.purchasing && !props.orderComplete && !props.orderIsInProgress? <Aux>
+                props.purchasing && !props.orderComplete && !props.orderIsInProgress ? <Aux>
                     <div>
                         <strong>Your total is {props.totalPrice.toFixed(2)}$</strong>
                     </div>

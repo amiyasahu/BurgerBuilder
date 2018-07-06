@@ -1,8 +1,9 @@
 import React from 'react';
+import './ToggleButton.css';
 
 const toggleButton = (props) => {
     return (
-        <button className="Button" onClick={props.openDrawer}>
+        <button className="Button ToggleButton" onClick={props.openDrawer}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
                 <title>Menu</title>
                 <path stroke="currentColor"

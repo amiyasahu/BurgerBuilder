@@ -1,0 +1,17 @@
+.ToggleButton {
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    margin-left: 0;
+    padding-left: 0;
+    font-size: inherit;
+    line-height: inherit;
+    padding-top: 3px;
+}
+
+.ToggleButton:hover,
+.ToggleButton:active {
+    color: white;
+    outline: none;
+}

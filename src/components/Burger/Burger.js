@@ -16,7 +16,8 @@ const burger = (props) => {
             }, []);
 
     if ( transformedIngredients.length === 0 ) {
-        transformedIngredients = <div>Start adding ingredients to your burger!!</div>
+        const suggest = props.suggest || "Start adding ingredients to your burger!!";
+        transformedIngredients = <div>{suggest}</div>
     }
 
     return (

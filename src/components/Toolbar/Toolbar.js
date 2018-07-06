@@ -1,7 +1,5 @@
 import React from 'react';
-import { Logo } from "../index";
-import Navigation from '../Navigation/Navigation';
-import ToggleButton from '../SideDrawer/ToggleButton';
+import { Logo, Navigation, ToggleButton } from "../index";
 import './Toolbar.css';
 
 const toolbar = (props) => {

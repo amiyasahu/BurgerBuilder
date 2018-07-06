@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from './components';
 import { BurgerBuilder, Checkout } from './containers';
-import { axios } from './axios';
 import './App.css';
+
+const routes = (
+    <Switch>
+        <Route path="/checkout" component={Checkout}/>
+        <Route path="/" exact component={BurgerBuilder}/>
+    </Switch>
+);
+
+const layout = (
+    <Layout>
+        {routes}
+    </Layout>
+);
+
+const app = (
+    <div className="App">
+        {layout}
+    </div>
+);
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <Layout>
-                    <BurgerBuilder/>
-                    <Checkout/>
-                </Layout>
-            </div>
+            <BrowserRouter>
+                {app}
+            </BrowserRouter>
         );
     }
 }
