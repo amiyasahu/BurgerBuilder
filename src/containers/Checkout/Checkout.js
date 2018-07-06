@@ -45,17 +45,18 @@ class Checkout extends Component {
                     checkoutContinued={this.checkoutContinueHandler}/>
                 <Route
                     path={`${this.props.match.path}/contact-data`}
-                    render={() => ( this.contactDataComponent() )}
+                    render={(props) => ( this.contactDataComponent(props) )}
                 />
             </div>
         );
     }
 
-    contactDataComponent = () => {
+    contactDataComponent = (props) => {
         return (
             <ContactData
                 ingredients={this.state.ingredients}
                 totalPrice={this.state.totalPrice}
+                {...props}
             />
         );
     }

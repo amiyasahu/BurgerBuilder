@@ -84,6 +84,7 @@ class ContactData extends Component {
     render() {
 
         if ( !this.props.totalPrice ) {
+            // redirect to home when there is no price
             return <Redirect to="/"/>;
         }
 
