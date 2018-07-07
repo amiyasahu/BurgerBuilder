@@ -27,7 +27,7 @@ const Order = (props) => {
                             : <span>Few days ago</span>
                     }
                 </div>
-                <div className="u-cf"/>
+                <div className="u-cf"/> {/*Clearfix*/}
             </div>
             <div className="OrderDetail">
                 Ingredients included in this order with a delicious burger
@@ -37,12 +37,12 @@ const Order = (props) => {
             </div>
             <div className="OrderFooter">
                 <div className="DeliveryAddress u-pull-left">
-                    @ Delivery Address : {order.customer.address.street}, {order.customer.address.postalCode}
+                    <strong>Delivery Address:</strong> {order.customer.address.street}, {order.customer.address.postalCode}
                 </div>
                 <div className="OrderTotal u-pull-right">
                     $<span>{order.price}</span>
                 </div>
-                <div className="u-cf"/>
+                <div className="u-cf"/> {/*Clearfix*/}
             </div>
         </div>
     );
