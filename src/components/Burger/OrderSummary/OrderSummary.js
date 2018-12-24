@@ -1,5 +1,4 @@
 import React from 'react';
-import { Aux } from '../../../hoc';
 import './OrderSummary.css';
 
 const orderSummary = (props) => {
