@@ -46,32 +46,7 @@ class BurgerBuilder extends Component {
     };
 
     purchaseContinueHandler = async () => {
-        const queryParams = [];
-
-        for ( let ingredient in this.state.ingredients ) {
-            queryParams.push(
-                encodeURIComponent(ingredient)
-                + "="
-                + encodeURIComponent(this.state.ingredients[ ingredient ])
-            );
-        }
-
-        // TODO : Find a better way to pass params
-        queryParams.push("price=" + this.state.totalPrice);
-
-        const queryString = queryParams.join("&");
-        this.props.history.push({
-            pathname: "/checkout",
-            search: queryString
-        });
-
-        // const response = await defaultAxios.post('/orders', {
-        //     ingredients: this.state.ingredients,
-        //     price: this.state.totalPrice
-        // });
-        //
-        // // just an dummy wait to see the spinner for a second
-        // await this.sleep(1000);
+        this.props.history.push("/checkout");
     };
 
     isPurchasable = (updatedIngredients) => {

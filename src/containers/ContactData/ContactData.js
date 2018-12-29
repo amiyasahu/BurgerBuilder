@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 import { Spinner } from "../../components";
 import { defaultAxios } from '../../axios';
+import {connect} from 'react-redux';
 import './ContactData.css';
 
 class ContactData extends Component {
@@ -28,7 +29,7 @@ class ContactData extends Component {
         this.setState({ loading: true, orderComplete: false });
 
         const order = {
-            ingredients: this.props.ingredients,
+            ingredients: this.props.ings,
             price: this.props.totalPrice,
             customer: {
                 name: 'Amiya',
@@ -107,4 +108,11 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        ings : state.ingredients,
+        totalPrice : state.totalPrice
+    };
+};
+
+export default connect(mapStateToProps)(ContactData);
