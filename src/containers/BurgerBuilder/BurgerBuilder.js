@@ -4,6 +4,8 @@ import Burger from '../../components/Burger/Burger';
 import { BuildControls, Modal, OrderSummary } from '../../components';
 import { defaultAxios } from '../../axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import {connect} from 'react-redux';
+import * as actionTypes from '../../store/actions';
 import './BurgerBuilder.css';
 
 const INGREDIENT_PRICES = {
@@ -16,13 +18,6 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
 
     state = {
-        ingredients: {
-            salad: 1,
-            bacon: 0,
-            cheese: 2,
-            meat: 1,
-        },
-        totalPrice: 2.99,
         purchasable: true,
         purchasing: false,
         loading: true
@@ -30,7 +25,7 @@ class BurgerBuilder extends Component {
 
     async componentDidMount() {
         await this.loadIngredients();
-    }
+    };
 
     loadIngredients = async () => {
         await this.sleep(250); // dummy to see the spinner
@@ -45,7 +40,7 @@ class BurgerBuilder extends Component {
 
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    };
 
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false });
@@ -105,7 +100,7 @@ class BurgerBuilder extends Component {
 
         this.setState({
             ingredients: updatedIngredients,
-            totalPrice: this.state.totalPrice + INGREDIENT_PRICES[ type ],
+            totalPrice: this.props.totalPrice + INGREDIENT_PRICES[ type ],
             purchasable: this.isPurchasable(updatedIngredients)
         });
     };
@@ -130,8 +125,8 @@ class BurgerBuilder extends Component {
     };
 
     render() {
-        const lessShouldBeDisabled = { ...this.state.ingredients };
-        const moreShouldBeDisabled = { ...this.state.ingredients };
+        const lessShouldBeDisabled = { ...this.props.ings };
+        const moreShouldBeDisabled = { ...this.props.ings };
 
         for ( let key in lessShouldBeDisabled ) {
             lessShouldBeDisabled[ key ] = lessShouldBeDisabled[ key ] === 0;
@@ -147,15 +142,15 @@ class BurgerBuilder extends Component {
             burger = (
                 <Aux>
                     <Burger
-                        ingredients={this.state.ingredients}
+                        ingredients={this.props.ings}
                         suggest="Start adding ingredients to your burger!!"/>
 
                     <BuildControls
-                        onAdd={this.addIngredientHandler}
-                        onRemove={this.removeIngredientHandler}
+                        onAdd={this.props.onIngredientAdded}
+                        onRemove={this.props.onIngredientRemoved}
                         lessShouldBeDisabled={lessShouldBeDisabled}
                         moreShouldBeDisabled={moreShouldBeDisabled}
-                        totalPrice={this.state.totalPrice}
+                        totalPrice={this.props.totalPrice}
                         purchasable={this.state.purchasable}
                         onPurchase={this.purchaseHandler}/>
                 </Aux>
@@ -167,8 +162,8 @@ class BurgerBuilder extends Component {
                 {burger}
                 <Modal show={this.state.purchasing}
                        modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary ingredients={this.state.ingredients}
-                                  totalPrice={this.state.totalPrice}
+                    <OrderSummary ingredients={this.props.ings}
+                                  totalPrice={this.props.totalPrice}
                                   purchasing={this.state.purchasing}
                                   purchaseCancelled={this.purchaseCancelHandler}
                                   purchaseContinued={this.purchaseContinueHandler}/>
@@ -179,4 +174,18 @@ class BurgerBuilder extends Component {
 
 }
 
-export default withErrorHandler(BurgerBuilder, defaultAxios);
+const mapStateToProps = state => {
+    return {
+        ings : state.ingredients,
+        totalPrice : state.totalPrice
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onIngredientAdded   : (name) => dispatch({type: actionTypes.ADD_INGREDIENT, payload : {ingredientName: name}}),
+        onIngredientRemoved : (name) => dispatch({type: actionTypes.REMOVE_INGREDIENT, payload : {ingredientName: name}}),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, defaultAxios));
