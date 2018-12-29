@@ -18,7 +18,6 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
 
     state = {
-        purchasable: true,
         purchasing: false,
         loading: true
     };
@@ -86,44 +85,6 @@ class BurgerBuilder extends Component {
         return sum > 0;
     };
 
-    addIngredientHandler = (type) => {
-
-        if ( this.state.ingredients[ type ] >= 3 ) {
-            return;
-        }
-
-        const updatedIngredients = {
-            ...this.state.ingredients
-        };
-
-        updatedIngredients[ type ] = this.state.ingredients[ type ] + 1;
-
-        this.setState({
-            ingredients: updatedIngredients,
-            totalPrice: this.props.totalPrice + INGREDIENT_PRICES[ type ],
-            purchasable: this.isPurchasable(updatedIngredients)
-        });
-    };
-
-    removeIngredientHandler = (type) => {
-
-        if ( this.state.ingredients[ type ] === 0 ) {
-            return;
-        }
-
-        const updatedIngredients = {
-            ...this.state.ingredients
-        };
-
-        updatedIngredients[ type ] = this.state.ingredients[ type ] - 1;
-
-        this.setState({
-            ingredients: updatedIngredients,
-            totalPrice: this.state.totalPrice - INGREDIENT_PRICES[ type ],
-            purchasable: this.isPurchasable(updatedIngredients)
-        });
-    };
-
     render() {
         const lessShouldBeDisabled = { ...this.props.ings };
         const moreShouldBeDisabled = { ...this.props.ings };
@@ -151,7 +112,7 @@ class BurgerBuilder extends Component {
                         lessShouldBeDisabled={lessShouldBeDisabled}
                         moreShouldBeDisabled={moreShouldBeDisabled}
                         totalPrice={this.props.totalPrice}
-                        purchasable={this.state.purchasable}
+                        purchasable={this.isPurchasable(this.props.ings)}
                         onPurchase={this.purchaseHandler}/>
                 </Aux>
             );
