@@ -5,7 +5,8 @@ import { BuildControls, Modal, OrderSummary } from '../../components';
 import { defaultAxios } from '../../axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actions from '../../store/actions';
+
 import './BurgerBuilder.css';
 
 const INGREDIENT_PRICES = {
@@ -119,8 +120,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded   : (name) => dispatch({type: actionTypes.ADD_INGREDIENT, payload : {ingredientName: name}}),
-        onIngredientRemoved : (name) => dispatch({type: actionTypes.REMOVE_INGREDIENT, payload : {ingredientName: name}}),
+        onIngredientAdded   : (name) => dispatch(actions.addIngredient(name)),
+        onIngredientRemoved : (name) => dispatch(actions.removeIngredient(name))
     };
 };
 
