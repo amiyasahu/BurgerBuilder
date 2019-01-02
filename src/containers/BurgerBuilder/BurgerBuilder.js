@@ -5,7 +5,7 @@ import { BuildControls, Modal, OrderSummary } from '../../components';
 import { defaultAxios } from '../../axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import {connect} from 'react-redux';
-import * as actions from '../../store/actions';
+import * as actions from '../../store/actions/';
 
 import './BurgerBuilder.css';
 
@@ -20,19 +20,12 @@ class BurgerBuilder extends Component {
 
     state = {
         purchasing: false,
-        loading: true
+        loading: false
     };
 
-    async componentDidMount() {
-        await this.loadIngredients();
-    };
-
-    loadIngredients = async () => {
-        await this.sleep(250); // dummy to see the spinner
-        const response = await defaultAxios.get('/ingredients');
-        this.setState({ ingredients: response.data, loading: false });
-        return response;
-    };
+    componentDidMount () {
+        this.props.initIngredients();
+    }
 
     purchaseHandler = () => {
         this.setState({ purchasing: true });
@@ -62,6 +55,11 @@ class BurgerBuilder extends Component {
     };
 
     render() {
+
+        if(this.props.error){
+            return <p>Error while loading the ingredients!</p>;
+        }
+
         const lessShouldBeDisabled = { ...this.props.ings };
         const moreShouldBeDisabled = { ...this.props.ings };
 
@@ -72,7 +70,7 @@ class BurgerBuilder extends Component {
         for ( let key in moreShouldBeDisabled ) {
             moreShouldBeDisabled[ key ] = moreShouldBeDisabled[ key ] >= 3;
         }
-
+        
         let burger = <Spinner/>;
 
         if ( !this.state.loading ) {
@@ -103,7 +101,8 @@ class BurgerBuilder extends Component {
                                   totalPrice={this.props.totalPrice}
                                   purchasing={this.state.purchasing}
                                   purchaseCancelled={this.purchaseCancelHandler}
-                                  purchaseContinued={this.purchaseContinueHandler}/>
+                                  purchaseContinued={this.purchaseContinueHandler}
+                    />
                 </Modal>
             </Aux>
         );
@@ -114,14 +113,16 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings : state.ingredients,
-        totalPrice : state.totalPrice
+        totalPrice : state.totalPrice,
+        error : state.error
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded   : (name) => dispatch(actions.addIngredient(name)),
-        onIngredientRemoved : (name) => dispatch(actions.removeIngredient(name))
+        onIngredientRemoved : (name) => dispatch(actions.removeIngredient(name)),
+        initIngredients : () => dispatch(actions.initIngredients()),
     };
 };
 
