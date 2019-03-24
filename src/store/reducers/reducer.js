@@ -13,41 +13,52 @@ const INGREDIENT_PRICES = {
     meat: 0.25,
 };
 
+const addIngredient = (state, action) => {
+    return {
+        ...state,
+        ingredients : {
+            ...state.ingredients,
+            [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] + 1 // Note : here we are using the dynamic name for a object key
+        },
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[ action.payload.ingredientName ],
+    };
+};
+
+const removeIngredient = (state, action) => {
+    return {
+        ...state,
+        ingredients : {
+            ...state.ingredients,
+            [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] - 1 // Note : here we are using the dynamic name for a object key
+        },
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[ action.payload.ingredientName ],
+    };
+};
+
+const setIngredient = (state, action) => {
+    return {
+        ...state,
+        ingredients : action.payload.ingredients,
+        error : false
+    };
+};
+const fetchIngredientFailed = (state, action) => {
+    return {
+        ...state,
+        error: true
+    };
+};
+
 const reducer = (state = initialState, action) => {
-    console.log(action);
     switch(action.type){
         case actionTypes.ADD_INGREDIENT :
-            return {
-                ...state,
-                ingredients : {
-                    ...state.ingredients,
-                    [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] + 1 // Note : here we are using the dynamic name for a object key
-                },
-                totalPrice: state.totalPrice + INGREDIENT_PRICES[ action.payload.ingredientName ],
-            };
+            return addIngredient(state, action);
         case actionTypes.REMOVE_INGREDIENT :
-            return {
-                ...state,
-                ingredients : {
-                    ...state.ingredients,
-                    [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] - 1 // Note : here we are using the dynamic name for a object key
-                },
-                totalPrice: state.totalPrice - INGREDIENT_PRICES[ action.payload.ingredientName ],
-            };
-
+            return removeIngredient(state, action);
         case actionTypes.SET_INGREDIENTS :
-            return {
-                ...state,
-                ingredients : action.payload.ingredients,
-                error : false
-            };
-            
+            return setIngredient(state, action);
         case actionTypes.FETCH_INGREDIENTS_FAILED :
-            return {
-                ...state,
-                error: true
-            };
-
+            return fetchIngredientFailed(state, action);
         default:
             return state;
     }
