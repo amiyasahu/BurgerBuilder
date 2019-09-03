@@ -3,7 +3,7 @@
 
 # How to setup 
 
-```
+```bash
 git clone https://github.com/amiyasahu/BurgerBuilder.git
 npm install 
 npm run jsonserv
