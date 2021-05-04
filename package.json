@@ -16,7 +16,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "url-parse": ">=1.4.3",
-    "merge": ">=1.2.1"
+    "merge": ">=2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
