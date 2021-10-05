@@ -15,7 +15,7 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "url-parse": ">=1.4.3",
+    "url-parse": ">=1.5.2",
     "merge": ">=1.2.1"
   },
   "scripts": {
